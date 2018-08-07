@@ -1,0 +1,4 @@
+PLUGIN_ADMIN_PUBLISH:
+  TITLE: "Publish site"
+  MENU: "Publish"
+  RUN: "Publish"

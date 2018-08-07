@@ -1,14 +1,14 @@
-name: Static Site Generator Admin
-version: 1.0.0
-description: "Static site generator in the Admin-plugin."
+name: Publish
+version: 0.1.0
+description: "Publish for Admin."
 icon: cloud-upload
 author:
   name: Igor Kuznetsov
   email: igk@igk.ru
   url: https://igk.ru
-homepage: https://github.com/igk1972/grav-plugin-admin-ssg
-keywords: static, ssg, site generator, html
-bugs: https://github.com/igk1972/grav-plugin-admin-ssg
+homepage: https://github.com/igk1972/grav-plugin-publish
+keywords: publish, webhook
+bugs: https://github.com/igk1972/grav-plugin-publish
 license: MIT
 dependencies:
   - { name: grav, version: '>=1.4' }

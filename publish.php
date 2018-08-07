@@ -7,7 +7,7 @@ use Grav\Common\Page\Page;
 use RocketTheme\Toolbox\Event\Event;
 use Grav\Plugin\Ssg\AdminController;
 
-class AdminSsgPlugin extends Plugin
+class PublishPlugin extends Plugin
 {
 
     /**
@@ -46,10 +46,10 @@ class AdminSsgPlugin extends Plugin
         /** @var AdminController controller */
         $this->controller = new AdminController($this);
 
-        $page_file = GRAV_ROOT.'/user/plugins/admin-ssg/admin/pages/ssg.md';
+        $page_file = GRAV_ROOT.'/user/plugins/admin-ssg/admin/pages/publish.md';
         if (!file_exists($page_file)) {
             mkdir(dirname($page_file), 0777, true);
-            file_put_contents($page_file, file_get_contents(__DIR__.'/admin/pages/ssg.md'));
+            file_put_contents($page_file, file_get_contents(__DIR__.'/admin/pages/publish.md'));
         }
     }
 
@@ -84,13 +84,13 @@ class AdminSsgPlugin extends Plugin
 
     public function onAdminMenu()
     {
-        $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_SSG.MENU'] = ['route' => $this->name, 'icon' => 'fa-cloud-upload'];
+        $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_PUBLISH.MENU'] = ['route' => $this->name, 'icon' => 'fa-cloud-upload'];
         // $admin_route = $this->config->get('plugins.admin.route');
         //
-        // $this->grav['twig']->plugins_quick_tray['SsgLink'] = [
+        // $this->grav['twig']->plugins_quick_tray['PublishLink'] = [
         //     'icon' => 'fa fa-cloud-upload',
-        //     'route' => $admin_route.'/ssg',
-        //     'hint' => 'PLUGIN_ADMIN_SSG.TITLE'
+        //     'route' => $admin_route.'/publish',
+        //     'hint' => 'PLUGIN_ADMIN_PUBLISH.TITLE'
         // ];
     }
 

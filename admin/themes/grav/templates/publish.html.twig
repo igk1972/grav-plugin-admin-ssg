@@ -1,0 +1,8 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set base_route = location %}
+{% set separator = config.system.param_sep %}
+
+{% block titlebar %}
+    <h1><i class="fa fa-fw fa-cloud"></i> {{ "PLUGIN_ADMIN_PUBLISH.TITLE"|tu }}</h1>
+{% endblock %}
