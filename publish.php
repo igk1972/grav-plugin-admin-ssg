@@ -5,7 +5,7 @@ use Grav\Common\Grav;
 use Grav\Common\Plugin;
 use Grav\Common\Page\Page;
 use RocketTheme\Toolbox\Event\Event;
-use Grav\Plugin\Ssg\AdminController;
+use Grav\Plugin\Publish\AdminController;
 
 class PublishPlugin extends Plugin
 {
@@ -47,7 +47,7 @@ class PublishPlugin extends Plugin
         /** @var AdminController controller */
         $this->controller = new AdminController($this);
 
-        $page_file = GRAV_ROOT.'/user/plugins/admin-ssg/admin/pages/publish.md';
+        $page_file = GRAV_ROOT.'/user/plugins/publish/admin/pages/publish.md';
         if (!file_exists($page_file)) {
             mkdir(dirname($page_file), 0777, true);
             file_put_contents($page_file, file_get_contents(__DIR__.'/admin/pages/publish.md'));
@@ -115,8 +115,8 @@ class PublishPlugin extends Plugin
 
     public function onFormProcessed(Event $event)
     {
-        $action = $event['action'];
-
+        // $action = $event['action'];
+        //
         // if ($action == 'some') {
         //     $this->some();
         // }
