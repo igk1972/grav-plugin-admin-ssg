@@ -17,7 +17,8 @@ class PublishPlugin extends Plugin
     public static function getSubscribedEvents()
     {
         return [
-            'onPluginsInitialized' => ['onPluginsInitialized', 0]
+            'onPluginsInitialized' => ['onPluginsInitialized', 0],
+            'onTwigSiteVariables'  => ['onTwigSiteVariables', 0]
         ];
     }
 
@@ -74,6 +75,16 @@ class PublishPlugin extends Plugin
     }
 
     /**
+     * Set needed variables to display direcotry.
+     */
+    public function onTwigSiteVariables()
+    {
+        if ($this->isAdmin()) {
+            $this->grav['assets']->addJs('plugin://publish/js/publish.js');
+        }
+    }
+
+    /**
      * Create content variables and push to Twig
      * @return void
      */
@@ -84,12 +95,12 @@ class PublishPlugin extends Plugin
 
     public function onAdminMenu()
     {
-        $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_PUBLISH.MENU'] = ['route' => $this->name, 'icon' => 'fa-cloud-upload'];
-        // $admin_route = $this->config->get('plugins.admin.route');
+        $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_PUBLISH.MENU'] = ['route' => $this->name.'.json/task:Run', 'icon' => 'fa-cloud-upload'];
         //
+        // $admin_route = $this->config->get('plugins.admin.route');
         // $this->grav['twig']->plugins_quick_tray['PublishLink'] = [
         //     'icon' => 'fa fa-cloud-upload',
-        //     'route' => $admin_route.'/publish',
+        //     'route' => $admin_route.'/'.$this->name.'.json/task:Run',
         //     'hint' => 'PLUGIN_ADMIN_PUBLISH.TITLE'
         // ];
     }

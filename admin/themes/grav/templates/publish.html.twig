@@ -3,6 +3,16 @@
 {% set base_route = location %}
 {% set separator = config.system.param_sep %}
 
+{% set publish_url = base_url_relative ~ '/publish.json/task' ~ separator ~ 'Run'|e('html_attr') %}
+
 {% block titlebar %}
-    <h1><i class="fa fa-fw fa-cloud"></i> {{ "PLUGIN_ADMIN_PUBLISH.TITLE"|tu }}</h1>
+    <div class="button-bar">
+        {% if authorize(['admin.super', 'admin.publish']) %}
+            <button data-publish-type="" data-publish="{{ publish_url }}" class="button"><i class="fa fa-cloud-upload"></i> {{ "PLUGIN_ADMIN_PUBLISH.RUN"|tu }}</button>
+        {% endif %}
+    </div>
+    <h1><i class="fa fa-fw fa-cloud-upload"></i> {{ "PLUGIN_ADMIN_PUBLISH.TITLE"|tu }}</h1>
+{% endblock %}
+
+{% block content %}
 {% endblock %}
