@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "Grav\\Plugin\\Publish\\": "classes/"
+    }
+  },
+  "require": {
+    "guzzlehttp/guzzle": "^6.3"
+  }
+}
