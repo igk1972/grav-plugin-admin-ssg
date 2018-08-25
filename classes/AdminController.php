@@ -29,6 +29,9 @@ class AdminController extends Controller
         $config['touch'] = $user_path.DIRECTORY_SEPARATOR.$config['touch'];
       }      
       try {
+          if (!file_exists(dirname($config['touch']))) {
+            mkdir(dirname($config['touch']), 0777, true);
+          }
           touch($config['touch']);
           $this->admin->json_response = [
             'status'  => 'success'
