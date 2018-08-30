@@ -35,7 +35,7 @@ class PublishPlugin extends Plugin
         }
 
         $user = $this->grav['user'];
-        if (!($user->authenticated && $user->authorize('admin.publish'))) {
+        if (!($user->authenticated && ($user->authorize('admin.publish') || $user->authorize('admin.super')))) {
             return;
         }
 
@@ -104,7 +104,7 @@ class PublishPlugin extends Plugin
         $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_PUBLISH.MENU'] = [
             'route'     => $this->name.'.json/task:Run',
             'icon'      => 'fa-cloud-upload',
-            'authorize' => ['admin.publish']
+            'authorize' => ['admin.publish','admin.super']
         ];
         //
         // $admin_route = $this->config->get('plugins.admin.route');
