@@ -30,6 +30,12 @@ class PublishPlugin extends Plugin
     {
         /* Check if Admin-interface */
         if (!$this->isAdmin()) {
+            $this->active = false;
+            return;
+        }
+
+        $user = $this->grav['user'];
+        if (!($user->authenticated && $user->authorize('admin.publish'))) {
             return;
         }
 
@@ -95,7 +101,11 @@ class PublishPlugin extends Plugin
 
     public function onAdminMenu()
     {
-        $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_PUBLISH.MENU'] = ['route' => $this->name.'.json/task:Run', 'icon' => 'fa-cloud-upload'];
+        $this->grav['twig']->plugins_hooked_nav['PLUGIN_ADMIN_PUBLISH.MENU'] = [
+            'route'     => $this->name.'.json/task:Run',
+            'icon'      => 'fa-cloud-upload',
+            'authorize' => ['admin.publish']
+        ];
         //
         // $admin_route = $this->config->get('plugins.admin.route');
         // $this->grav['twig']->plugins_quick_tray['PublishLink'] = [
